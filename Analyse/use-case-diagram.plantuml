@@ -1,0 +1,34 @@
+@startuml "Deployment app"
+
+left to right direction
+
+actor "User" as User
+
+usecase "Deploy" as Deploy
+usecase "Configure Environments" as Configuration
+
+usecase "Run Tests Unit" as TestsUnit
+usecase "Build Application" as BuildApplication
+usecase "Deploy to Production" as DeployProduction
+
+usecase "Manage environments variables" as ManageEnvVariables
+usecase "Manage domains" as ManageDomains
+usecase "Integrate Webhooks (automated deployment)" as IntegrateWebHooks
+usecase "Notify Team on Deployment" as NotifyTeam
+usecase "Generate Deployment Reports" as DeploymentReports
+
+User --> Deploy
+User --> Configuration
+
+Configuration --> ManageEnvVariables
+Configuration --> ManageDomains
+Configuration --> IntegrateWebHooks
+
+Deploy --> TestsUnit
+Deploy --> BuildApplication
+Deploy --> DeployProduction
+
+Deploy --> NotifyTeam : <<extends>>
+Deploy --> DeploymentReports : <<extends>>
+
+@enduml
