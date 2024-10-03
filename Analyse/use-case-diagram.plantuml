@@ -24,6 +24,8 @@ Configuration --> ManageEnvVariables
 Configuration --> ManageDomains
 Configuration --> IntegrateWebHooks
 
+IntegrateWebHooks .> TestsUnit
+
 Deploy --> TestsUnit
 Deploy --> BuildApplication
 Deploy --> DeployProduction
