@@ -2,7 +2,7 @@
 
 left to right direction
 
-actor "User" as User
+actor "Developer" as User
 
 usecase "Deploy Project" as Deploy
 usecase "Projects" as Projects
