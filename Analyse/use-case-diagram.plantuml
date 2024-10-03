@@ -4,12 +4,18 @@ left to right direction
 
 actor "User" as User
 
-usecase "Deploy" as Deploy
+usecase "Deploy Project" as Deploy
+usecase "Projects" as Projects
+
 usecase "Configure Environments" as Configuration
 
 usecase "Run Tests Unit" as TestsUnit
 usecase "Build Application" as BuildApplication
 usecase "Deploy to Production" as DeployProduction
+
+usecase "Create project" as CreateProject
+usecase "Modify project" as ModifyProject
+usecase "Delete project" as DeleteProject
 
 usecase "Manage environments variables" as ManageEnvVariables
 usecase "Manage domains" as ManageDomains
@@ -19,6 +25,13 @@ usecase "Generate Deployment Reports" as DeploymentReports
 
 User --> Deploy
 User --> Configuration
+User --> Projects
+
+Projects --> Deploy
+
+Projects --> CreateProject
+Projects --> ModifyProject
+Projects --> DeleteProject
 
 Configuration --> ManageEnvVariables
 Configuration --> ManageDomains
