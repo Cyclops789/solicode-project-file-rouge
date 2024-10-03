@@ -1,0 +1,13 @@
+@startuml "Deployment app"
+
+left to right direction
+
+actor "Developer" as User
+
+rectangle Project {
+    usecase "Manage Projects" as ProjectCRUD
+}
+
+User -- ProjectCRUD
+
+@enduml

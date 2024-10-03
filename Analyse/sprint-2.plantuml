@@ -1,0 +1,15 @@
+@startuml "Deployment app"
+
+left to right direction
+
+actor "Developer" as User
+
+rectangle Project {
+    usecase "Manage Projects" as ManageProject
+    usecase "Deploy project" as DeployProject
+}
+
+User -- ManageProject
+ManageProject .-- DeployProject : <<includes>>
+
+@enduml

@@ -15,14 +15,14 @@ rectangle "During Deployment" {
     usecase "Deploy to Production" as DeployProduction
 }
 
-usecase "Project (CRUD)" as ProjectCRUD
+usecase "Manage Project" as ProjectCRUD
 
-usecase "Domain names (CRUD)" as DomainsCRUD
 usecase "Link domain to project" as DomainProject
 
 usecase "Manage environments variables" as ManageEnvVariables
+usecase "Domain names" as DomainNames
 usecase "Manage domains names" as ManageDomains
-usecase "Integrate Webhooks (automated deployment)" as IntegrateWebHooks
+usecase "Manage Webhooks (automated deployment)" as IntegrateWebHooks
 
 rectangle "After Deployment" {
     usecase "Notify Team on Deployment" as NotifyTeam
@@ -34,18 +34,18 @@ User -- Projects
 
 Projects -- Deploy
 Projects -- ProjectCRUD
+Projects -- ManageEnvVariables
 Projects . DomainProject
 
-Configuration -- ManageEnvVariables
-Configuration -- ManageDomains
+Configuration -- DomainNames
 Configuration -- IntegrateWebHooks
 
-ManageEnvVariables . "During Deployment"
+ManageEnvVariables . "During Deployment" : <<includes>>
 
-ManageDomains -- DomainsCRUD
-ManageDomains -- DomainProject
+DomainNames -- ManageDomains
+DomainNames -- DomainProject
 
-IntegrateWebHooks . TestsUnit
+IntegrateWebHooks . "During Deployment" : <<triggers>>
 
 Deploy -- TestsUnit
 Deploy -- BuildApplication

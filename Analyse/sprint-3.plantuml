@@ -1,0 +1,25 @@
+@startuml "Deployment app"
+
+left to right direction
+
+actor "Developer" as User
+
+rectangle Project {
+    usecase "Manage Projects" as ManageProject
+    usecase "Build & Deploy project" as DeployProject
+    usecase "Run unit tests" as UnitTests
+    usecase "Notify team" as NotifyTeam
+    usecase "Generate deploy report" as GenerateDeploy
+}
+
+User -- ManageProject
+
+ManageProject .-- DeployProject : <<includes>>
+ManageProject .-- UnitTests : <<includes>>
+
+DeployProject . UnitTests
+
+DeployProject -- NotifyTeam
+DeployProject -- GenerateDeploy
+
+@enduml
