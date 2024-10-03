@@ -9,41 +9,41 @@ usecase "Projects" as Projects
 
 usecase "Configure Environments" as Configuration
 
-usecase "Run Tests Unit" as TestsUnit
-usecase "Build Application" as BuildApplication
-usecase "Deploy to Production" as DeployProduction
+rectangle "During Deployment" {
+    usecase "Run Tests Unit" as TestsUnit
+    usecase "Build Application" as BuildApplication
+    usecase "Deploy to Production" as DeployProduction
+}
 
-usecase "Create project" as CreateProject
-usecase "Modify project" as ModifyProject
-usecase "Delete project" as DeleteProject
+usecase "Project (CRUD)" as ProjectCRUD
 
-usecase "Create domains" as CreateDomain
-usecase "Modify domains" as ModifyDomain
-usecase "Delete domains" as DeleteDomain
+usecase "Domain names (CRUD)" as DomainsCRUD
+usecase "Link domain to project" as DomainProject
 
 usecase "Manage environments variables" as ManageEnvVariables
-usecase "Manage domains" as ManageDomains
+usecase "Manage domains names" as ManageDomains
 usecase "Integrate Webhooks (automated deployment)" as IntegrateWebHooks
-usecase "Notify Team on Deployment" as NotifyTeam
-usecase "Generate Deployment Reports" as DeploymentReports
 
+rectangle "After Deployment" {
+    usecase "Notify Team on Deployment" as NotifyTeam
+    usecase "Generate Deployment Reports" as DeploymentReports
+}
 User -- Deploy
 User -- Configuration
 User -- Projects
 
 Projects -- Deploy
-
-Projects -- CreateProject
-Projects -- ModifyProject
-Projects -- DeleteProject
+Projects -- ProjectCRUD
+Projects . DomainProject
 
 Configuration -- ManageEnvVariables
 Configuration -- ManageDomains
 Configuration -- IntegrateWebHooks
 
-ManageDomains -- CreateDomain
-ManageDomains -- ModifyDomain
-ManageDomains -- DeleteDomain
+ManageEnvVariables . "During Deployment"
+
+ManageDomains -- DomainsCRUD
+ManageDomains -- DomainProject
 
 IntegrateWebHooks . TestsUnit
 
