@@ -27,31 +27,31 @@ usecase "Integrate Webhooks (automated deployment)" as IntegrateWebHooks
 usecase "Notify Team on Deployment" as NotifyTeam
 usecase "Generate Deployment Reports" as DeploymentReports
 
-User --> Deploy
-User --> Configuration
-User --> Projects
+User -- Deploy
+User -- Configuration
+User -- Projects
 
-Projects --> Deploy
+Projects -- Deploy
 
-Projects --> CreateProject
-Projects --> ModifyProject
-Projects --> DeleteProject
+Projects -- CreateProject
+Projects -- ModifyProject
+Projects -- DeleteProject
 
-Configuration --> ManageEnvVariables
-Configuration --> ManageDomains
-Configuration --> IntegrateWebHooks
+Configuration -- ManageEnvVariables
+Configuration -- ManageDomains
+Configuration -- IntegrateWebHooks
 
-ManageDomains --> CreateDomain
-ManageDomains --> ModifyDomain
-ManageDomains --> DeleteDomain
+ManageDomains -- CreateDomain
+ManageDomains -- ModifyDomain
+ManageDomains -- DeleteDomain
 
-IntegrateWebHooks .> TestsUnit
+IntegrateWebHooks . TestsUnit
 
-Deploy --> TestsUnit
-Deploy --> BuildApplication
-Deploy --> DeployProduction
+Deploy -- TestsUnit
+Deploy -- BuildApplication
+Deploy -- DeployProduction
 
-Deploy --> NotifyTeam : <<extends>>
-Deploy --> DeploymentReports : <<extends>>
+Deploy -- DeploymentReports : <<extends>>
+Deploy -- NotifyTeam : <<extends>>
 
 @enduml
