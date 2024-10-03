@@ -17,6 +17,10 @@ usecase "Create project" as CreateProject
 usecase "Modify project" as ModifyProject
 usecase "Delete project" as DeleteProject
 
+usecase "Create domains" as CreateDomain
+usecase "Modify domains" as ModifyDomain
+usecase "Delete domains" as DeleteDomain
+
 usecase "Manage environments variables" as ManageEnvVariables
 usecase "Manage domains" as ManageDomains
 usecase "Integrate Webhooks (automated deployment)" as IntegrateWebHooks
@@ -36,6 +40,10 @@ Projects --> DeleteProject
 Configuration --> ManageEnvVariables
 Configuration --> ManageDomains
 Configuration --> IntegrateWebHooks
+
+ManageDomains --> CreateDomain
+ManageDomains --> ModifyDomain
+ManageDomains --> DeleteDomain
 
 IntegrateWebHooks .> TestsUnit
 
