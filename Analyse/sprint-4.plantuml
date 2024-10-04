@@ -1,0 +1,23 @@
+@startuml "Deployment app"
+
+left to right direction
+
+actor "Developer" as User
+
+rectangle Project {
+    usecase "Configure environments" as ConfigureEnvironments
+    usecase "Domain names" as DomainNames
+    usecase "Manage Domain names" as ManageDomainNames
+    usecase "Manage WebHooks (automated deployment)" as ManageWebHooks
+    usecase "Link domain name to project" as LinkDomainNameToProject
+}
+
+User -- ConfigureEnvironments
+
+ConfigureEnvironments .-- DomainNames : <<includes>>
+ConfigureEnvironments .-- ManageWebHooks : <<includes>>
+
+DomainNames -- ManageDomainNames
+DomainNames -- LinkDomainNameToProject
+
+@enduml
